@@ -1,12 +1,37 @@
 var svg = document.querySelector('svg');
 var slide_index = 0;
 
+var console_visible = true;
+
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.next').forEach(o => o.addEventListener('click', function(e) {
         console.log('next!');
     }));
 
     right_mode();
+
+    svg.querySelectorAll('.highlight').forEach(o => {
+        o.setAttribute('opacity', 0);
+        o.addEventListener('mouseover', function(e) {
+            o.classList.forEach(c => {
+                if(c.endsWith('_h')) {
+                    svg.querySelectorAll(`.${c}`).forEach(b => b.setAttribute('opacity', 1))
+                }
+            })
+        });
+        o.addEventListener('mouseout', function(e) {
+            o.classList.forEach(c => {
+                if(c.endsWith('_h')) {
+                    svg.querySelectorAll(`.${c}`).forEach(b => b.setAttribute('opacity', 0))
+                }
+            })
+        });
+    });
+
+    svg.querySelector('#consoleBtn').addEventListener('click', function(e) {
+        console_visible = !console_visible;
+        svg.querySelector('#console').setAttribute('opacity', console_visible ? 1 : 0);
+    });
 });
 
 document.addEventListener('keyup', function(e) {

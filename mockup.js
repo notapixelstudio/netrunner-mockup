@@ -68,8 +68,8 @@ function update_slide() {
 }
 
 function right_mode() {
-    svg.querySelector('.right').setAttribute('visibility', 'visible');
-    svg.querySelector('.left').setAttribute('visibility', 'hidden');
+    svg.querySelectorAll('.right').forEach(e => e.setAttribute('visibility', 'visible'));
+    svg.querySelectorAll('.left').forEach(e => e.setAttribute('visibility', 'hidden'));
 
     svg.querySelector('#scoreArea').setAttribute('transform', `translate(0,0)`);
     svg.querySelector('#playArea').setAttribute('transform', `translate(${w('#scoreAreaExtent')},0)`);
@@ -79,8 +79,8 @@ function right_mode() {
 }
 
 function left_mode() {
-    svg.querySelector('.left').setAttribute('visibility', 'visible');
-    svg.querySelector('.right').setAttribute('visibility', 'hidden');
+    svg.querySelectorAll('.left').forEach(e => e.setAttribute('visibility', 'visible'));
+    svg.querySelectorAll('.right').forEach(e => e.setAttribute('visibility', 'hidden'));
 
     svg.querySelector('#actionsArea').setAttribute('transform', `translate(0,0)`);
     svg.querySelector('#playArea').setAttribute('transform', `translate(${w('#actionsAreaExtent')},0)`);
